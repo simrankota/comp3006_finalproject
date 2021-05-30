@@ -84,21 +84,21 @@ class GradData:
         \nThe range of salaries is from ${self.median_sal_range[0]} to ${self.median_sal_range[1]}.''')
 
     # outputs a csv file of the top 10 majors by median salary. Output columns are major and median salary
-    def get_csv_top10_salaries(self):
+    def get_csv_top10_salaries(self, output):
         self.sort_data('Median')
         x = self.data['Major'][:10]
         y = self.data['Median'][:10]
-        pd.DataFrame({'Major': x, "Median_Salary": y}).to_csv('top_10_median_salaries.csv')
+        pd.DataFrame({'Major': x, "Median_Salary": y}).to_csv(output)
 
     # outputs a csv file of the top 10 majors by number of respondents. Output columns are major,
     # total respondents, male respondenets, and female respondents
-    def get_csv_top10_respondents(self):
+    def get_csv_top10_respondents(self, output):
         self.sort_data('Total')
         x = self.data['Major'][:10]
         men = self.data['Men'][:10]
         women = self.data['Women'][:10]
         total = self.data['Total'][:10]
-        pd.DataFrame({'Major': x, 'Total_Respondents': total, "Men": men, 'Women': women}).to_csv('top_10_respondents.csv')
+        pd.DataFrame({'Major': x, 'Total_Respondents': total, "Men": men, 'Women': women}).to_csv(output)
 
 # runs through the basic functionality of the GradData class if script is being run directly, 
 # and not being imported as a module
