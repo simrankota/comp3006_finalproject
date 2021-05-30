@@ -1,0 +1,6 @@
+####### requirements to run final_analysis.py ##########
+argparse
+matplotlib.pyplot
+pandas
+numpy
+os
