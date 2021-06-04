@@ -12,6 +12,9 @@ class GradData:
     def __init__(self):
         self.load_data()
 
+    def get_data(self):
+        return self.data
+
     # Reads in the data from the recent-grads csv file. If the file doesn't exist, raises a file
     # not found error
     # saves the data to the data attribute
