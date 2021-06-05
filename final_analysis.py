@@ -1,7 +1,6 @@
 from grads_data import GradData
 import matplotlib.pyplot as plt
 import argparse
-# import pandas_sets
 import pandas as pd
 import numpy as np
 import descartes
@@ -12,6 +11,7 @@ from decimal import Decimal
 import math
 import logging
 import os
+from college_type import SalaryData
 
 # MapPlot class to create a geoplot displaying the location, salary, and type of schools
 class MapPlot():
@@ -96,8 +96,10 @@ class MajCat():
         else:
             self.mapping = pd.read_csv("./College_Major-Type_Lookup.csv")
         logging.debug('retrieving salaries by college type data from module')
-        # replace with module!!!
-        self.type_data = pd.read_csv('./salaries-by-college-type.csv')
+        self.type_data = pd.DataFrame(SalaryData().get_data(), columns=['School Name',
+            'School Type', 'Starting Median Salary', 'Mid-Career Median Salary',
+            'Mid-Career 10th Percentile Salary', 'Mid-Career 25th Percentile Salary',
+            'Mid-Career 75th Percentile Salary', 'Mid-Career 90th Percentile Salary'])
         self.top_5_schools()
         self.top_5_majors()
 
