@@ -34,5 +34,9 @@ class test_grads_data(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             ret = self.d.load_data()
 
+    # test get data functionality. Shape of returned dataframe should be 173 x 21
+    def test_get_data(self):
+        self.assertEqual(self.d.get_data().shape, (173, 21))
+
 if __name__ == '__main__':
     unittest.main()

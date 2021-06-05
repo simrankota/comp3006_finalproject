@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import logging
 
 # define GradData class to handle loading and processing of recent_grads datafile
 class GradData:
@@ -10,9 +11,13 @@ class GradData:
 
     # constructor for GradData object. Calls the load data function to read in data
     def __init__(self):
+        logging.debug('initializing GradData object')
+        logging.debug('loading data')
         self.load_data()
 
+    # returns data attribute for the class
     def get_data(self):
+        logging.debug('getting data')
         return self.data
 
     # Reads in the data from the recent-grads csv file. If the file doesn't exist, raises a file
@@ -23,19 +28,23 @@ class GradData:
             raise FileNotFoundError('This file does not exist! Please try again.')
         else:
             self.data = pd.read_csv(self.FILE_PATH)
+            logging.debug('data successfully read from ./recent-grads.csv')
 
     # inputs: attribute to sort data by. Defaults to descending, but can be overriden.
     # sorts data class attribute based on inputted sort_by attribute. If attribute does not exist
     # raises an Index Error
     def sort_data(self, sort_by, order=False):
+        logging.debug(f'attempting to sort data by {sort_by}')
         if sort_by not in self.data.columns:
             raise IndexError(f'Column {sort_by} not found. Please try again')
         else:
             self.data = self.data.sort_values(by=[sort_by], ascending=order)
+            logging.debug('data has been sorted')
 
     # sorts the data based on Median salary in descending order, and creates a bar chart of the top
     # 10 majors by median salary
     def plot_top10_median_salary(self):
+        logging.debug('plotting top 10 majors by median salary')
         self.sort_data('Median')
         x = self.data['Major'][:10]
         y = self.data['Median'][:10]
@@ -58,6 +67,7 @@ class GradData:
     # chart of the top 10 majors by number of respondents. Bars show respondents split by male and
     # female respondents.
     def plot_num_respondents_top10(self):
+        logging.debug('plotting top 10 majors by number of respondents')
         self.sort_data('Total')
         x = self.data['Major'][:10]
         men = self.data['Men'][:10]
@@ -77,17 +87,18 @@ class GradData:
 
     # computes basic statistics of the data including shape of data (num of rows/columns), number
     # of major categories represented, and range of median salaries. Stores these statistics as class
-    # attributes and prints a brief summary
+    # attributes and logs a brief summary
     def get_stats(self):
         self.dims = self.data.shape
         self.num_cats = self.data['Major_category'].nunique()
         self.median_sal_range = (self.data["Median"].min(), self.data["Median"].max())
-        print(f'''There are {self.dims[0]} rows and {self.dims[1]} columns in the dataset.
+        logging.info(f'''There are {self.dims[0]} rows and {self.dims[1]} columns in the dataset.
         \nThere are {self.num_cats} major categories represented.
         \nThe range of salaries is from ${self.median_sal_range[0]} to ${self.median_sal_range[1]}.''')
 
     # outputs a csv file of the top 10 majors by median salary. Output columns are major and median salary
     def get_csv_top10_salaries(self, output):
+        logging.debug('printing csv output of top 10 majors by median salary')
         self.sort_data('Median')
         x = self.data['Major'][:10]
         y = self.data['Median'][:10]
@@ -96,6 +107,7 @@ class GradData:
     # outputs a csv file of the top 10 majors by number of respondents. Output columns are major,
     # total respondents, male respondenets, and female respondents
     def get_csv_top10_respondents(self, output):
+        logging.debug('printing csv output of top 10 majors by number of respondents')
         self.sort_data('Total')
         x = self.data['Major'][:10]
         men = self.data['Men'][:10]
@@ -106,6 +118,21 @@ class GradData:
 # runs through the basic functionality of the GradData class if script is being run directly, 
 # and not being imported as a module
 if __name__ == '__main__':
+
+    # initialize logger and set level to debug
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    # set file logger level at debug
+    fh = logging.FileHandler('grads_data.log', 'w')
+    fh.setLevel(logging.DEBUG)
+    logger.addHandler(fh)
+
+    # set console logger level at info
+    sh = logging.StreamHandler(sys.stdout)
+    sh.setLevel(logging.INFO)
+    logger.addHandler(sh)
+
     d = GradData()
     d.get_stats()
     d.plot_top10_median_salary()
