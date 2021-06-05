@@ -12,6 +12,7 @@ import math
 import logging
 import os
 from college_type import SalaryData
+import sys
 
 # MapPlot class to create a geoplot displaying the location, salary, and type of schools
 class MapPlot():
@@ -150,7 +151,7 @@ class MajCat():
         pd.DataFrame({"Major": self.top_5m["Major"], "Median Salary": self.top_5m['Median']}).to_csv(output)
 
     # returns csv output of data used in top 5 schools subplot. Prints to provided output file
-    def get_csv_top5m(self, output):
+    def get_csv_top5s(self, output):
         logging.debug(f'printing data to {output}')
         pd.DataFrame({"School Name": self.top_5s['School Name'], "Median Salary": self.top_5s['Starting Median Salary']}).to_csv(output)
 
@@ -160,9 +161,15 @@ def main():
         description='analyze various data sets related to expected salaries based on college region, type, and major'
     )
 
-    parser.add_argument('command', metavar='<command>', type=str, help='command to execute', default='plot')
-    parser.add_argument('-o', '--ofile', metavar='<outfile>', dest='output', action='store')
-    parser.add_argument('-g', '--grads_data', metavar='<plot name>', dest='plot_grads_data', choices=['median_salary', 'num_respondents'])
+    parser.add_argument('command', metavar='<command>', type=str, help="command to execute. Only acceptable input is 'plot'", default='plot')
+    parser.add_argument('-o', '--ofile', metavar='<outfile>', dest='output', action='store', help='output file to store csv data associated with chosen plots')
+    parser.add_argument('-g', '--grads_data', metavar='<plot name>', dest='plot_grads_data', choices=['median_salary', 'num_respondents'],
+        help='plots associated with recent_grads.csv. Options are median_salary (view top 10 majors by median salary), and num_respondents (view top 10 majors by number of respondents)')
+    parser.add_argument('-m', '--map_data', dest='plot_map', action='store_true', help='view geoplot of schools by location, school type, and median salary')
+    parser.add_argument('-c', '--cat_info', metavar='<major category>', dest='plot_majcat', choices=['Education', 'Psychology & Social Work',
+        'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services',
+        'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy',
+        'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'], help="view top 5 schools and majors for an inputted major category. Acceptable inputs are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'")
     args = parser.parse_args()
     
     if args.command == 'plot':
@@ -176,6 +183,17 @@ def main():
                 gd.plot_num_respondents_top10()
                 if args.output is not None:
                     gd.get_csv_top10_respondents(args.output)
+        elif args.plot_map:
+            m = MapPlot()
+            m.create_map()
+            if args.output is not None:
+                m.get_csv(args.output)
+        elif args.plot_majcat is not None:
+            m = MajCat(args.plot_majcat)
+            m.create_plot()
+            if args.output is not None:
+                m.get_csv_top5m("1" + args.output)
+                m.get_csv_top5s("2" + args.output)
     else:
         logging.warning('unsupported command provided')
 
