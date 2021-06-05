@@ -19,7 +19,7 @@ We will be analyzing data sets for recent graduates that include location, type 
 <br /> <br />
 
 ## Usage
-(insert example CLI call here)
+*python3 final_analysis.py plot <**args**>*
 
 ### Dependencies
 package dependencies listed in requirements.txt
@@ -30,7 +30,11 @@ package dependencies listed in requirements.txt
 
 ### [optional arguments]
 
--**g**: plots figures from recent_grads data file. Choices are [median_salary, num_respondents]
+-**g**: plots associated with recent_grads.csv. Options are median_salary (view top 10 majors by median salary), and num_respondents (view top 10 majors by number of respondents)
 
--**o** *file name*: saves csvs associated with command to file
+-**o** *file name*: output file to store csv data associated with chosen plots
+
+-**m**: view geoplot of schools by location, school type, and median salary
+
+-**c** *major category*: view top 5 schools and majors for an inputted major category. Acceptable inputs are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'
 

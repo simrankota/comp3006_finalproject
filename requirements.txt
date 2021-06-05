@@ -1,6 +1,16 @@
 ####### requirements to run final_analysis.py ##########
-argparse
+grads_data
 matplotlib.pyplot
+argparse
 pandas
 numpy
+descartes
+geopandas
+shapely.geometry
+re
+decimal
+math
+logging
 os
+college_type
+sys
