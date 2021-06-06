@@ -13,38 +13,16 @@ import logging
 import os
 from college_type import SalaryData
 import sys
+from college_region import *
 
 # MapPlot class to create a geoplot displaying the location, salary, and type of schools
 class MapPlot():
 
-    # constructor for MapPlot class. Reads in necessary data files, cleans the data as necessary,
-    # and joins the tables
+    # constructor for MapPlot class. Reads in data from college_region module
     def __init__(self):
-        logging.debug('initializing MapPlot object')
-        # replace with data from module!!!!
-        FILE_PATH = './salaries-by-region.csv'
-        logging.debug('retrieving school location data from ./EDGE_GEOCODE_POSTSECONDARYSCH_2021/EDGE_GEOCODE_POSTSECSCH_2021.csv')
-        if not os.path.exists('./EDGE_GEOCODE_POSTSECONDARYSCH_2021/EDGE_GEOCODE_POSTSECSCH_2021.csv'):
-            raise FileNotFoundError()
-        else:
-            self.geo_file = './EDGE_GEOCODE_POSTSECONDARYSCH_2021/EDGE_GEOCODE_POSTSECSCH_2021.csv'
-            logging.debug('data retrieved successfully')
-        logging.debug('retrieving salaries by region data from module')
-        self.data = pd.read_csv(FILE_PATH)
-        self.clean_data()
-        logging.debug('merging data tables')
-        self.merge_data()
-
-    def clean_data(self):
-        pass
-
-    # performs a left outer join on salaries by region data, school location data (geo_file), and
-    # salaries by college type data. Stores joined table as a class attribute
-    def merge_data(self):
-        all_data = pd.merge(self.data, pd.read_csv(self.geo_file), left_on='School Name', right_on='NAME', how='left')
-        all_data = pd.merge(all_data, pd.read_csv('./salaries-by-college-type.csv'), on='School Name', how='left')
-        self.merged = all_data
-        logging.debug('data tables successfully merged')
+        logging.debug('retrieving map data from college_region module')
+        m = MapData()
+        self.merged = m.all_data
 
     # Map plotting logic. Creates a base map of the US, and then adds points for each school using
     # data from the joined data table and the geopandas module. Location of the point is based on
@@ -64,7 +42,7 @@ class MapPlot():
         fig.suptitle('Starting Median Salary based on Type of Schools in the US')
         state_map.plot(ax=ax, alpha=0.4, color='grey')
         geo_df.plot(column='School Type', cmap='jet', ax=ax, alpha=0.5, legend=True,
-            markersize=[float(Decimal(sub(r'[^\d.]', '', i[1:]))) / 250 for i in geo_df['Starting Median Salary_x']])
+            markersize=[float(Decimal(sub(r'[^\d.]', '', i[1:]))) / 250 for i in geo_df['Starting Median Salary']])
         # set latitiude and longitude boundaries for map display
         plt.xlim(-125,-70)
         plt.ylim(25,50)
@@ -77,7 +55,7 @@ class MapPlot():
         logging.debug(f'printing data to {output}')
         pd.DataFrame({"School Name": self.merged['School Name'], "School Type": self.merged['School Type'], "Latitude":
             self.merged['LAT'], "Longitude": self.merged['LON'], "Median Starting Salary":
-            self.merged['Starting Median Salary_x']}).to_csv(output)
+            self.merged['Starting Median Salary']}).to_csv(output)
 
 # MajCat class to create a bar chart of the top 5 schools/majors based on major category
 class MajCat():
