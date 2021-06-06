@@ -25,15 +25,29 @@ twentyfifthAvg = defaultdict(float)
 seventyfifthAvg = defaultdict(float)
 ninetiethAvg = defaultdict(float)
 
+# rootLogger object level set to minimal "DEBUG" level to consider logging at all levels
+rootlogger = logging.getLogger()
+rootlogger.setLevel(logging.DEBUG)
+
+# writes all logs meeting set level to log file 'college_type1.log'
+logfile = logging.FileHandler('college_type1.log', 'w')
+logfile.setLevel(logging.DEBUG)
+rootlogger.addHandler(logfile)
+
+# writes all "INFO" level logs to console
+logstream = logging.StreamHandler()
+logstream.setLevel(logging.INFO)
+rootlogger.addHandler(logstream)
+
 class SalaryData:
 
     FILE_PATH = 'salaries-by-college-type.csv'
 
-    # Initializes class and executes _load_data module
+    # Initializes class and executes load_data, median_data, and spread_data modules
     def __init__(self):
         self.load_data()
-        self.median_data()
-        self.spread_data()
+        self.median_data(self.data)
+        self.spread_data(self.data)
 
     def get_data(self):
         return self.data
@@ -58,24 +72,27 @@ class SalaryData:
                     self.data.append(row)
     
     #Reads in list of rows list to only grab starting and mid-career median salary values per type of school and calculates average of each
-    def median_data(self):
+    def median_data(self, var1):
         logging.debug('Parsing data by median starting and mid-career salaries for each school type')
-        for f in self.data:
+        for f in var1:
             col_type[f[1]] += 1
             f[2] = f[2].replace(',','')
             startTotal[f[1]] += float(f[2][1:])
             f[3] = f[3].replace(',','')
             midTotal[f[1]] += float(f[3][1:])
-        logging.debug('Calculate averages of median starting and mid-career salaries for each school type')
+        logging.debug('attempting calculations for averages of median starting and mid-career salaries for each school type')
         for key in startTotal:
             startAvg[key] = round(startTotal[key]/col_type[key],2)
             midAvg[key] = round(midTotal[key]/col_type[key],2)
             salDelta[key] = round(midAvg[key]-startAvg[key],2)
-    
-    #Reads in list of rows list to only grab starting and mid-career median salary values per type of school and calculates average of each
-    def spread_data(self):
+        self.d = startAvg
+        self.e = midAvg
+        logging.debug('salary averages calculated successfully')
+
+    #Reads in list of rows list to only grab mid-career 10th, 25th, 75th, and 90th percentile salary values per type of school and calculates average of each
+    def spread_data(self, var2):
         logging.debug('Parsing data by mid-career 10th, 25th, 75th, and 90th percentile salary for each school type')
-        for f in self.data:
+        for f in var2:
             col_typeOne[f[1]] += 1
             if f[4] == 'N/A':
                 col_typeOne[f[1]] -= 1
@@ -110,7 +127,13 @@ class SalaryData:
             twentyfifthAvg[key] = round(twentyfifthTotal[key]/col_typeTwo[key],2)
             seventyfifthAvg[key] = round(seventyfifthTotal[key]/col_typeThree[key],2)
             ninetiethAvg[key] = round(ninetiethTotal[key]/col_typeFour[key],2)
+        self.g = tenthAvg
+        self.h = twentyfifthAvg
+        self.i = seventyfifthAvg
+        self.j = ninetiethAvg
+        logging.debug('salary averages calculated successfully')
 
+    #Reads in defaultdicts of starting and mid-career averages per school type and graphs each on a double bar graph
     def plot_type_median(self):
         x1 = list(startAvg.keys())
         y1 = list(startAvg.values())
@@ -132,9 +155,10 @@ class SalaryData:
         axis[0].set_title('Average Salary Vs Type')
         figure.tight_layout(pad=3.0)
         axis[1].set_title('Average Salary Vs Mid-Career Percentile Category')
+        logging.debug('median salary graphs plotted successfully')
 
+    #Reads in defaultdicts and plots a line graph for each school type which plots the defaultdict 10th, 25th, 75th, and 90th percentile avg values for each line
     def plot_type_spread(self):
-        # figure, axis = plt.subplots(2)
         x1 = ['10th percentile', '25th percentile', '75th percentile', '90th percentile']
         y1 = [tenthAvg['Engineering'], twentyfifthAvg['Engineering'], seventyfifthAvg['Engineering'], ninetiethAvg['Engineering']]
         y2 = [tenthAvg['Party'], twentyfifthAvg['Party'], seventyfifthAvg['Party'], ninetiethAvg['Party']]
@@ -151,25 +175,13 @@ class SalaryData:
         
         plt.legend()
         plt.savefig('final_testing_4.jpg')
-
+        logging.debug('mid-career spread salary line graph plotted successfully')
 
 def main():
-    # rootLogger object level set to minimal "DEBUG" level to consider logging at all levels
-    rootlogger = logging.getLogger()
-    rootlogger.setLevel(logging.DEBUG)
-
-    # writes all logs meeting set level to log file 'autompg2.log'
-    logfile = logging.FileHandler('college_type1.log', 'w')
-    logfile.setLevel(logging.DEBUG)
-    rootlogger.addHandler(logfile)
-
-    # writes all "INFO" level logs to console
-    logstream = logging.StreamHandler()
-    logstream.setLevel(logging.INFO)
-    rootlogger.addHandler(logstream)
-
-if __name__ == '__main__':
     # Initializes SalaryData class
     saltype = SalaryData()
     saltype.plot_type_median()
     saltype.plot_type_spread()
+
+if __name__ == '__main__':
+    main()
