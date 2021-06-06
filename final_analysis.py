@@ -148,7 +148,9 @@ def main():
         'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services',
         'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy',
         'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'], help="view top 5 schools and majors for an inputted major category. Acceptable inputs are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'")
+    parser.add_argument('-t', '--college_type', dest='college_type', action='store_true', help='view double plot of avg starting/mid-career salary vs. school type and avg career spread salary vs. school type')
     args = parser.parse_args()
+    
     
     if args.command == 'plot':
         if args.plot_grads_data is not None:
@@ -172,6 +174,10 @@ def main():
             if args.output is not None:
                 m.get_csv_top5m("1" + args.output)
                 m.get_csv_top5s("2" + args.output)
+        elif args.college_type is not None:
+            t = SalaryData()
+            t.plot_type_median()
+            t.plot_type_spread()
     else:
         logging.warning('unsupported command provided')
 
