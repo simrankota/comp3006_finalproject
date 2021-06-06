@@ -30,7 +30,7 @@ rootlogger = logging.getLogger()
 rootlogger.setLevel(logging.DEBUG)
 
 # writes all logs meeting set level to log file 'college_type1.log'
-logfile = logging.FileHandler('college_type1.log', 'w')
+logfile = logging.FileHandler('./log_files/college_type1.log', 'w')
 logfile.setLevel(logging.DEBUG)
 rootlogger.addHandler(logfile)
 
@@ -175,6 +175,7 @@ class SalaryData:
         
         plt.legend()
         plt.savefig('final_testing_4.jpg')
+        plt.show()
         logging.debug('mid-career spread salary line graph plotted successfully')
 
 def main():

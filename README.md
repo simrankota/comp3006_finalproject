@@ -15,7 +15,7 @@ We will be analyzing data sets for recent graduates that include location, type 
 <br /> <br />
 
 ## Analysis Conclusion
-(Insert text here)
+Petroleum Engineering overall seemed to be the major with the highest median salary. Ivy League colleges seemed to have the highest range of salaries (difference between 10th percentile and 90th percentile), and they also had the highest difference between the starting salary and mid-career salary. However, they also had the highest overall starting salary. Similarly, California seemed to have the highest mid-career salary, although it was very close to northeastern for starting salary. This is likely due to the large number of ivies in the northeastern region. The northeastern region had the highest delta between starting salary and mid-career.
 <br /> <br />
 
 ## Usage
@@ -30,12 +30,8 @@ package dependencies listed in requirements.txt
 
 ### [optional arguments]
 
--**g**: plots associated with recent_grads.csv. Options are median_salary (view top 10 majors by median salary), and num_respondents (view top 10 majors by number of respondents)
+-**i**: plot initial EDA (exploratory data analysis) plots for recent_grads.csv, salaries_by_college_type.csv, and salaries_by_region.csv
 
--**o** *file name*: output file to store csv data associated with chosen plots
+-**o** *file name*: output file to store csv data associated with final plots
 
--**m**: view geoplot of schools by location, school type, and median salary
-
--**c** *major category*: view top 5 schools and majors for an inputted major category. Acceptable inputs are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'
-
--**t**: plots associated with 'salaries-by-college-type.csv'.
+-**f** *major category*: plot final geoplot exploring schools by location, median starting salary, and type, as well as barchart showing top 5 schools and majors for an inputted major category. Major category input is REQUIRED. Options are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'

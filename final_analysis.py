@@ -42,7 +42,7 @@ class MapPlot():
         fig.suptitle('Starting Median Salary based on Type of Schools in the US')
         state_map.plot(ax=ax, alpha=0.4, color='grey')
         geo_df.plot(column='School Type', cmap='jet', ax=ax, alpha=0.5, legend=True,
-            markersize=[float(Decimal(sub(r'[^\d.]', '', i[1:]))) / 250 for i in geo_df['Starting Median Salary']])
+            markersize=[float(Decimal(sub(r'[^\d.]', '', i[1:]))) / 1000 for i in geo_df['Starting Median Salary']])
         # set latitiude and longitude boundaries for map display
         plt.xlim(-125,-70)
         plt.ylim(25,50)
@@ -113,8 +113,10 @@ class MajCat():
         fig.suptitle(f'Top 5 Schools and Majors for {self.cat}')
         ax1.bar(self.top_5m['Major'], self.top_5m['Median'], color='orange')
         ax1.set_title('Top 5 Majors')
+        ax1.set_ylabel('Median Salary')
         ax2.bar(self.top_5s['School Name'], self.top_5s['Starting Median Salary'])
         ax2.set_title('Top 5 Schools')
+        ax2.set_ylabel('Median Salary')
         for label in ax1.get_xticklabels() + ax2.get_xticklabels():
             label.set_rotation(90)
             label.set_ha('right')    
@@ -135,49 +137,48 @@ class MajCat():
 
 
 def main():
+    # initialize argument parser
     parser = argparse.ArgumentParser(
         description='analyze various data sets related to expected salaries based on college region, type, and major'
     )
 
+    # required command plot to use file
     parser.add_argument('command', metavar='<command>', type=str, help="command to execute. Only acceptable input is 'plot'", default='plot')
-    parser.add_argument('-o', '--ofile', metavar='<outfile>', dest='output', action='store', help='output file to store csv data associated with chosen plots')
-    parser.add_argument('-g', '--grads_data', metavar='<plot name>', dest='plot_grads_data', choices=['median_salary', 'num_respondents'],
-        help='plots associated with recent_grads.csv. Options are median_salary (view top 10 majors by median salary), and num_respondents (view top 10 majors by number of respondents)')
-    parser.add_argument('-m', '--map_data', dest='plot_map', action='store_true', help='view geoplot of schools by location, school type, and median salary')
-    parser.add_argument('-c', '--cat_info', metavar='<major category>', dest='plot_majcat', choices=['Education', 'Psychology & Social Work',
+    # optional argument -o to print csv output for final plots
+    parser.add_argument('-o', '--ofile', metavar='<outfile>', dest='output', action='store', help='output file to store csv data associated with final plots')
+    # optional argument -i to display initial data plots
+    parser.add_argument('-i', '--initial_plots', dest='plot_initial', action='store_true', help='plot initial EDA (exploratory data analysis) plots for recent_grads.csv, salaries_by_college_type.csv, and salaries_by_region.csv')
+    # optional argument -f to display final data plots. Requires a major category to be inputted to display top 5 majors and schools for that category
+    parser.add_argument('-f', '--final_plots', dest='plot_final', metavar='<major category>', action='store', choices=['Education', 'Psychology & Social Work',
         'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services',
         'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy',
-        'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'], help="view top 5 schools and majors for an inputted major category. Acceptable inputs are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'")
-    parser.add_argument('-t', '--college_type', dest='college_type', action='store_true', help='view double plot of avg starting/mid-career salary vs. school type and avg career spread salary vs. school type')
+        'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'], help="plot final geoplot exploring schools by location, median starting salary, and type, as well as barchart showing top 5 schools and majors for an inputted major category. Major category input is REQUIRED. Options are 'Education', 'Psychology & Social Work', 'Biology & Life Science', 'Arts', 'Humanities & Liberal Arts', 'Health', 'Industrial Arts & Consumer Services', 'Agriculture & Natural Resources', 'Social Science', 'Communications & Journalism', 'Business', 'Law & Public Policy', 'Physical Sciences', 'Computers & Mathematics', 'Interdisciplinary', 'Engineering'")
+
     args = parser.parse_args()
     
     
     if args.command == 'plot':
-        if args.plot_grads_data is not None:
+        # show initial data plots
+        if args.plot_initial:
             gd = GradData()
-            if args.plot_grads_data == 'median_salary':
-                gd.plot_top10_median_salary()
-                if args.output is not None:
-                    gd.get_csv_top10_salaries(args.output)
-            elif args.plot_grads_data == 'num_respondents':
-                gd.plot_num_respondents_top10()
-                if args.output is not None:
-                    gd.get_csv_top10_respondents(args.output)
-        elif args.plot_map:
-            m = MapPlot()
-            m.create_map()
-            if args.output is not None:
-                m.get_csv(args.output)
-        elif args.plot_majcat is not None:
-            m = MajCat(args.plot_majcat)
-            m.create_plot()
-            if args.output is not None:
-                m.get_csv_top5m("1" + args.output)
-                m.get_csv_top5s("2" + args.output)
-        elif args.college_type is not None:
+            gd.plot_top10_median_salary()
+            gd.plot_num_respondents_top10()
             t = SalaryData()
             t.plot_type_median()
             t.plot_type_spread()
+            r = RegionData()
+            r.region_plot()
+        # show final data plots
+        elif args.plot_final is not None:
+            mp = MapPlot()
+            mp.create_map()
+            mc = MajCat(args.plot_final)
+            mc.create_plot()
+            # print csv output
+            if args.output is not None:
+                mp.get_csv("map" + args.output)
+                mc.get_csv_top5m("5m" + args.output)
+                mc.get_csv_top5s("5s" + args.output)
     else:
         logging.warning('unsupported command provided')
 
@@ -187,7 +188,7 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
 
     # set file logger level at debug
-    fh = logging.FileHandler('analysis.log', 'w')
+    fh = logging.FileHandler('./log_files/analysis.log', 'w')
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
 
