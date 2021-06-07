@@ -95,7 +95,7 @@ class MapData:
     SALARY_FILE = 'salaries-by-region.csv'
     GEO_FILE = 'EDGE_GEOCODE_POSTSECSCH_2021.csv'
     SCHOOL_TYPE = 'salaries-by-college-type.csv'
-    MAP_FILE = 'cb_2019_us_state_500k.shp'
+    MAP_FILE = './base_map/cb_2019_us_state_500k.shp'
 
     def __init__(self):
         self._load_data()
