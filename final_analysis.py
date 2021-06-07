@@ -44,7 +44,7 @@ class MapPlot():
         geo_df.plot(column='School Type', cmap='jet', ax=ax, alpha=0.5, legend=True,
             markersize=[float(Decimal(sub(r'[^\d.]', '', i[1:]))) / 1000 for i in geo_df['Starting Median Salary']])
         # set latitiude and longitude boundaries for map display
-        plt.xlim(-125,-70)
+        plt.xlim(-125,-65)
         plt.ylim(25,50)
         # show map
         logging.debug('creating geoplot')
