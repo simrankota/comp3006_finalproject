@@ -1,0 +1,301 @@
+checking that required map files are present
+creating mapping dataframe
+charting school data on map
+Entering env context: <fiona.env.Env object at 0x7f51a6166280>
+Starting outermost env
+No GDAL environment exists
+New GDAL environment <fiona._env.GDALEnv object at 0x7f5186a72160> created
+GDAL data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/gdal_data'.
+PROJ data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/proj_data'.
+Started GDALEnv: self=<fiona._env.GDALEnv object at 0x7f5186a72160>.
+Updated existing <fiona._env.GDALEnv object at 0x7f5186a72160> with options {}
+Entered env context: <fiona.env.Env object at 0x7f51a6166280>
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+OLC_FASTSETNEXTBYINDEX: 1
+OLC_FASTFEATURECOUNT: 1
+Next index: 0
+Next index: 1
+Next index: 2
+Next index: 3
+Next index: 4
+Next index: 5
+Next index: 6
+Next index: 7
+Next index: 8
+Next index: 9
+Next index: 10
+Next index: 11
+Next index: 12
+Next index: 13
+Next index: 14
+Next index: 15
+Next index: 16
+Next index: 17
+Next index: 18
+Next index: 19
+Next index: 20
+Next index: 21
+Next index: 22
+Next index: 23
+Next index: 24
+Next index: 25
+Next index: 26
+Next index: 27
+Next index: 28
+Next index: 29
+Next index: 30
+Next index: 31
+Next index: 32
+Next index: 33
+Next index: 34
+Next index: 35
+Next index: 36
+Next index: 37
+Next index: 38
+Next index: 39
+Next index: 40
+Next index: 41
+Next index: 42
+Next index: 43
+Next index: 44
+Next index: 45
+Next index: 46
+Next index: 47
+Next index: 48
+Next index: 49
+Next index: 50
+Next index: 51
+Next index: 52
+Next index: 53
+Next index: 54
+Next index: 55
+Next index: 56
+Flushed buffer
+Stopped session
+Exiting env context: <fiona.env.Env object at 0x7f51a6166280>
+Cleared existing <fiona._env.GDALEnv object at 0x7f5186a72160> options
+Stopping GDALEnv <fiona._env.GDALEnv object at 0x7f5186a72160>.
+Error handler popped.
+Stopped GDALEnv <fiona._env.GDALEnv object at 0x7f5186a72160>.
+Exiting outermost env
+Exited env context: <fiona.env.Env object at 0x7f51a6166280>
+findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal 700 normal>) = 11.335
+findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal 700 normal>) = 11.335
+findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal 700 normal>) = 11.335
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal 700 normal>) = 1.335
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal 700 normal>) = 11.335
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal 700 normal>) = 0.33499999999999996
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal 700 normal>) = 10.335
+findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/home/navan8/.local/lib/python3.8/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+checking that required map files are present
+creating mapping dataframe
+charting school data on map
+Entering env context: <fiona.env.Env object at 0x7f5186959790>
+Starting outermost env
+No GDAL environment exists
+New GDAL environment <fiona._env.GDALEnv object at 0x7f518546d670> created
+GDAL data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/gdal_data'.
+PROJ data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/proj_data'.
+Started GDALEnv: self=<fiona._env.GDALEnv object at 0x7f518546d670>.
+Updated existing <fiona._env.GDALEnv object at 0x7f518546d670> with options {}
+Entered env context: <fiona.env.Env object at 0x7f5186959790>
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+OLC_FASTSETNEXTBYINDEX: 1
+OLC_FASTFEATURECOUNT: 1
+Next index: 0
+Next index: 1
+Next index: 2
+Next index: 3
+Next index: 4
+Next index: 5
+Next index: 6
+Next index: 7
+Next index: 8
+Next index: 9
+Next index: 10
+Next index: 11
+Next index: 12
+Next index: 13
+Next index: 14
+Next index: 15
+Next index: 16
+Next index: 17
+Next index: 18
+Next index: 19
+Next index: 20
+Next index: 21
+Next index: 22
+Next index: 23
+Next index: 24
+Next index: 25
+Next index: 26
+Next index: 27
+Next index: 28
+Next index: 29
+Next index: 30
+Next index: 31
+Next index: 32
+Next index: 33
+Next index: 34
+Next index: 35
+Next index: 36
+Next index: 37
+Next index: 38
+Next index: 39
+Next index: 40
+Next index: 41
+Next index: 42
+Next index: 43
+Next index: 44
+Next index: 45
+Next index: 46
+Next index: 47
+Next index: 48
+Next index: 49
+Next index: 50
+Next index: 51
+Next index: 52
+Next index: 53
+Next index: 54
+Next index: 55
+Next index: 56
+Flushed buffer
+Stopped session
+Exiting env context: <fiona.env.Env object at 0x7f5186959790>
+Cleared existing <fiona._env.GDALEnv object at 0x7f518546d670> options
+Stopping GDALEnv <fiona._env.GDALEnv object at 0x7f518546d670>.
+Error handler popped.
+Stopped GDALEnv <fiona._env.GDALEnv object at 0x7f518546d670>.
+Exiting outermost env
+Exited env context: <fiona.env.Env object at 0x7f5186959790>
+charting school data on map
+Entering env context: <fiona.env.Env object at 0x7f5186a00760>
+Starting outermost env
+No GDAL environment exists
+New GDAL environment <fiona._env.GDALEnv object at 0x7f5185571dc0> created
+GDAL data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/gdal_data'.
+PROJ data found in package: path='/home/navan8/.local/lib/python3.8/site-packages/fiona/proj_data'.
+Started GDALEnv: self=<fiona._env.GDALEnv object at 0x7f5185571dc0>.
+Updated existing <fiona._env.GDALEnv object at 0x7f5185571dc0> with options {}
+Entered env context: <fiona.env.Env object at 0x7f5186a00760>
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+Layer has no coordinate system
+Projection not found (cogr_crs was NULL)
+OLC_FASTSETNEXTBYINDEX: 1
+OLC_FASTFEATURECOUNT: 1
+Next index: 0
+Next index: 1
+Next index: 2
+Next index: 3
+Next index: 4
+Next index: 5
+Next index: 6
+Next index: 7
+Next index: 8
+Next index: 9
+Next index: 10
+Next index: 11
+Next index: 12
+Next index: 13
+Next index: 14
+Next index: 15
+Next index: 16
+Next index: 17
+Next index: 18
+Next index: 19
+Next index: 20
+Next index: 21
+Next index: 22
+Next index: 23
+Next index: 24
+Next index: 25
+Next index: 26
+Next index: 27
+Next index: 28
+Next index: 29
+Next index: 30
+Next index: 31
+Next index: 32
+Next index: 33
+Next index: 34
+Next index: 35
+Next index: 36
+Next index: 37
+Next index: 38
+Next index: 39
+Next index: 40
+Next index: 41
+Next index: 42
+Next index: 43
+Next index: 44
+Next index: 45
+Next index: 46
+Next index: 47
+Next index: 48
+Next index: 49
+Next index: 50
+Next index: 51
+Next index: 52
+Next index: 53
+Next index: 54
+Next index: 55
+Next index: 56
+Flushed buffer
+Stopped session
+Exiting env context: <fiona.env.Env object at 0x7f5186a00760>
+Cleared existing <fiona._env.GDALEnv object at 0x7f5185571dc0> options
+Stopping GDALEnv <fiona._env.GDALEnv object at 0x7f5185571dc0>.
+Error handler popped.
+Stopped GDALEnv <fiona._env.GDALEnv object at 0x7f5185571dc0>.
+Exiting outermost env
+Exited env context: <fiona.env.Env object at 0x7f5186a00760>
+opening regional salary data file
+creating dicts for chart
+opening regional salary data file
+creating dicts for chart
+creating regional data chart
