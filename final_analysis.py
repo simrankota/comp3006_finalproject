@@ -188,7 +188,7 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
 
     # set file logger level at debug
-    fh = logging.FileHandler('./log_files/analysis.log', 'w')
+    fh = logging.FileHandler('analysis.log', 'w')
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
 

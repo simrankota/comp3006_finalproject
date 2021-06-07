@@ -125,7 +125,7 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
 
     # set file logger level at debug
-    fh = logging.FileHandler('./log_files/grads_data.log', 'w')
+    fh = logging.FileHandler('grads_data.log', 'w')
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
 

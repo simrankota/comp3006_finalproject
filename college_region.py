@@ -135,26 +135,6 @@ class MapData:
             self.all_data = pd.merge(data, geo_data, left_on='School Name', right_on='NAME', how='left')
             self.all_data.drop_duplicates(subset='School Name', keep='first', inplace=True)
 
-
-    # def plot_map(self):
-    #     logging.debug("charting school data on map")
-    #     #plots school lat/longs for schools from geo data on map
-    #     state_map = gpd.read_file(self.MAP_FILE)
-    #     geometry = [Point(xy) for xy in zip(self.all_data['LON'], self.all_data['LAT'])]
-    #     geo_df = gpd.GeoDataFrame(self.all_data, geometry=geometry)
-    #     fig, ax = plt.subplots(figsize=(30,20))
-    #     state_map.plot(ax=ax, alpha=0.4, color='grey')
-    #     #creates final plot and sizes dots based on starting median salary
-    #     geo_df.plot(column='School Type', cmap='jet', ax=ax, alpha=0.5, legend=True, markersize=[float(re.sub(r'[^\d.]', '', i[1:])) / 250 for i in geo_df['Starting Median Salary']])
-
-    #     # set latitiude and longitude boundaries for map display
-    #     plt.xlim(-125,-63)
-    #     plt.ylim(25,50)
-
-    #     # show map
-    #     plt.show()
-    #     plt.savefig('final_map.jpg')
-
 if __name__ == '__main__':
     MapData()
     MapData().plot_map()
